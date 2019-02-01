@@ -34,15 +34,36 @@ def neighbors(arr, x, y):
     #check above right
     if x + 1 < len(arr):
         i = arr[x + 1]
-        if y < len(i):
-            if i[y] == 1:
+        if y + 1 < len(i):
+            if i[y + 1] == 1:
                 neighbors += 1
 
+    #check above left
+        if x + 1 < len(arr):
+            i = arr[x + 1]
+            if y - 1 >= 0:
+                if i[y - 1] == 1:
+                    neighbors += 1
+
     # check below
-    if x - 1 < 0:
+    if x - 1 >= 0:
         i = arr[x - 1]
         if i[y] == 1:
             neighbors += 1
+
+    #check below right
+    if x - 1 >= 0:
+        i = arr[x - 1]
+        if y + 1 < len(i):
+            if i[y + 1] == 1:
+                neighbors += 1
+
+    #check below left
+    if x - 1 >= 0:
+        i = arr[x - 1]
+        if y - 1 >= 0:
+            if i[y - 1] == 1:
+                neighbors += 1
 
     # check to right
     i = arr[x]
@@ -52,7 +73,7 @@ def neighbors(arr, x, y):
 
     # check to left
     i = arr[x]
-    if y - 1 < 0:
+    if y - 1 >= 0:
         if i[y - 1] == 1:
             neighbors += 1
 
