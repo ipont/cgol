@@ -21,9 +21,50 @@ def display(arr):
 def generate(size):
     arr = np.random.randint(2, size=(size, size))
     return arr
+def neighbors(arr, x, y):
+    neighbors = 0
+
+    #check above
+    if x+1 < len(arr):
+        i = arr[x+1]
+        if i[y] == 1:
+            neighbors += 1
+
+    # check below
+    if x - 1 < len(arr):
+        i = arr[x - 1]
+        if i[y] == 1:
+            neighbors += 1
+
+    # check to right
+    i = arr[x]
+    if y + 1 < len(i):
+        if i[y+1] == 1:
+            neighbors += 1
+
+    # check to right
+    i = arr[x]
+    if y + 1 < len(i):
+        if i[y - 1] == 1:
+            neighbors += 1
+
+    return neighbors
 
 def update(arr):
-    print("update")
+    for x in range(len(arr)):
+        for y in range(len(arr[x])):
+            n = neighbors(arr, x, y)
+            if arr[x][y] == 1 and n < 2:
+                arr[x][y] = 0
+            if arr[x][y] == 1 and n > 2:
+                arr[x][y] = 0
+            if arr[x][y] == 0 and n == 3:
+                arr[x][y] = 1
 
-arr = generate(10)
-display(arr)
+
+arr = generate(20)
+
+while True:
+    display(arr)
+    update(arr)
+    time.sleep(1)
