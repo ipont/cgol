@@ -34,7 +34,9 @@ def get_gen():
 
 def display(arr):
     # clear screen
-    os.system('clear')
+    #os.system('clear')
+    print()
+    print()
     # print 1 as '*' an 0 as ' '
     for i in arr:
         for x in i:
@@ -110,19 +112,21 @@ def neighbors(arr, x, y):
 
 
 def update(arr):
+    narr = arr
     for x in range(len(arr)):
         for y in range(len(arr)):
             n = neighbors(arr, x, y)
             if arr[x][y] == 1 and n < 2:
-                arr[x][y] = 0
+                narr[x][y] = 0
             if arr[x][y] == 1 and n == 2:
-                arr[x][y] = 1
+                narr[x][y] = 1
             if arr[x][y] == 1 and n == 3:
-                arr[x][y] = 1
+                narr[x][y] = 1
             if arr[x][y] == 1 and n > 3:
-                arr[x][y] = 0
+                narr[x][y] = 0
             if arr[x][y] == 0 and n == 3:
-                arr[x][y] = 1
+                narr[x][y] = 1
+    return narr
 
 
 # generate new board
@@ -135,13 +139,13 @@ def main():
     if gens == -1:
         while True:
             display(arr)
-            update(arr)
-            time.sleep(.5)
+            arr = update(arr)
+            time.sleep(1)
 
     # finite generations
     for i in range(gens):
         display(arr)
-        update(arr)
-        time.sleep(.5)
+        arr = update(arr)
+        time.sleep(1)
 
 main()
