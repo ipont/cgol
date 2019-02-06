@@ -32,9 +32,10 @@ def get_gen():
     return gen
 
 
+# display board nicely
 def display(arr):
     # clear screen
-    #os.system('clear')
+    os.system('clear')
     print()
     print()
     # print 1 as '*' an 0 as ' '
@@ -111,7 +112,9 @@ def neighbors(arr, x, y):
     return neighbors
 
 
+# make decisions on whether a cell should live or die
 def update(arr):
+    # updated array
     narr = arr
     for x in range(len(arr)):
         for y in range(len(arr)):
@@ -129,10 +132,12 @@ def update(arr):
     return narr
 
 
-# generate new board
+# top level function
 def main():
+    # get user input
     size = get_size()
     gens = get_gen()
+    # new random board
     arr = generate(size)
 
     # infinite generations
