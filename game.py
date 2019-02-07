@@ -35,7 +35,10 @@ def get_gen():
 # display board nicely
 def display(arr):
     # clear screen
-    os.system('clear')
+    if (os.name == "nt"):
+        os.system('cls')
+    else:
+        os.system('clear')
     print()
     print()
     # print 1 as '*' an 0 as ' '
